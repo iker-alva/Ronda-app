@@ -1,0 +1,70 @@
+RONDA · QUE NUNCA FALTE GENTE
+================================
+
+Ronda junta a personas desconocidas para completar planes: crea un plan,
+haz match con gente afín y organizadlo por chat.
+
+CÓMO ABRIRLA
+------------
+1. Haz doble clic en Ronda.exe.
+2. Se abrirá una ventana negra con dos direcciones:
+   - Este equipo:  http://localhost:8788
+   - Comparte:     http://TU-IP-DE-LA-RED:8788
+3. En este ordenador se abrirá el navegador solo. Si no, copia la primera
+   dirección en Chrome, Edge o Safari.
+4. Deja la ventana negra abierta mientras la app esté en uso.
+   Para cerrarla: Ctrl+C o cierra la ventana.
+
+CÓMO COMPARTIRLA (VARIAS PERSONAS)
+----------------------------------
+- Todos los dispositivos deben estar en la misma wifi que este ordenador.
+- Pasa la dirección "Comparte" a las demás personas.
+- Abren esa dirección en el navegador del móvil u ordenador.
+- Cada persona crea su cuenta o usa una cuenta demo.
+- La primera vez, Windows puede preguntar por el firewall:
+  permite el acceso en redes privadas.
+- Si el puerto 8788 está ocupado, Ronda elige el siguiente libre
+  (8789, 8790...) y lo muestra en la ventana.
+
+CUENTAS DEMO
+------------
+lucia / demo1234
+hugo  / demo1234
+vera  / demo1234
+nico  / demo1234
+
+Todas las cuentas comparten la misma base de datos: los planes, matches
+y mensajes se ven en tiempo real entre dispositivos.
+
+TUS DATOS
+---------
+La base de datos se guarda en la carpeta "Ronda data", junto al .exe.
+- Para hacer una copia de seguridad, copia esa carpeta.
+- Para empezar de cero, cierra Ronda y elimina "Ronda data".
+- Puedes mover Ronda.exe y "Ronda data" juntos a otra carpeta o equipo.
+
+CONSEJOS
+--------
+- Windows puede mostrar "Windows protegió tu PC" porque el .exe no está
+  firmado. Pulsa "Más información" y "Ejecutar de todas formas".
+- La ubicación exacta se activa solo si tú lo autorizas: Ronda pregunta
+  primero y el navegador pide permiso después. En una dirección HTTP de
+  red local el navegador bloquea el GPS; elige tu ciudad y listo.
+- No hace falta internet: todo va por la wifi local.
+- Para usarla fuera de casa, publica el puerto detrás de un túnel HTTPS
+  (Cloudflare Tunnel, ngrok...) o un servidor. No lo expongas directamente
+  a internet sin HTTPS.
+- Para instalar la PWA en Android, Chrome exige HTTPS. Por wifi local se
+  puede usar igualmente en el navegador.
+- Tus datos se guardan en "Ronda data". Cierra y vuelve a abrir: todo sigue ahí.
+- Para hacer una copia completa, copia "Ronda data" con Ronda cerrado.
+- Cada persona puede descargar su propio JSON desde Perfil > Mis datos.
+- Las monedas son parte de la demo: 100 de bienvenida, 10 diarias y
+  10 por like. Reclama las diarias desde la cartera (icono de moneda).
+
+CREAR EL .EXE DESDE EL CÓDIGO
+-----------------------------
+Ejecuta build_exe.bat con Python 3.9+ instalado. PyInstaller se instala
+solo si falta. El resultado queda en la carpeta dist/.
+
+Ronda · Hackathon 26-27 · Madrid

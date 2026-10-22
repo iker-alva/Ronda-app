@@ -1,0 +1,32 @@
+VSVersionInfo(
+  ffi=FixedFileInfo(
+    filevers=(1, 0, 0, 0),
+    prodvers=(1, 0, 0, 0),
+    mask=0x3f,
+    flags=0x0,
+    OS=0x40004,
+    fileType=0x1,
+    subtype=0x0,
+    date=(0, 0)
+  ),
+  kids=[
+    StringFileInfo(
+      [
+        StringTable(
+          '040904B0',
+          [
+            StringStruct('CompanyName', 'Hackathon 26-27'),
+            StringStruct('FileDescription', 'Ronda - Que nunca falte gente'),
+            StringStruct('FileVersion', '1.0.0.0'),
+            StringStruct('InternalName', 'Ronda'),
+            StringStruct('LegalCopyright', 'Uso libre para el hackathon'),
+            StringStruct('OriginalFilename', 'Ronda.exe'),
+            StringStruct('ProductName', 'Ronda'),
+            StringStruct('ProductVersion', '1.0.0.0')
+          ]
+        )
+      ]
+    ),
+    VarFileInfo([VarStruct('Translation', [1033, 1200])])
+  ]
+)

@@ -1,0 +1,25 @@
+# Datos y bases de datos locales
+data/
+Ronda data/
+*.db
+*.db-wal
+*.db-shm
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Compilación del ejecutable
+build/
+dist/
+*.spec
+
+# Entorno
+.env
+.env.*
+
+# Sistema
+.DS_Store
+Thumbs.db

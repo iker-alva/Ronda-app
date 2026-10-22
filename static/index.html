@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="es" data-theme="noche">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0810">
+  <meta name="description" content="Ronda: completa tus planes con gente nueva. Crea un plan, haz match y sal.">
+  <title>Ronda · Que nunca falte gente</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ============================================================ auth -->
+  <section id="auth-screen" class="auth hidden">
+    <div class="auth-orb auth-orb-a" aria-hidden="true"></div>
+    <div class="auth-orb auth-orb-b" aria-hidden="true"></div>
+
+    <div class="auth-grid">
+      <div class="auth-intro">
+        <div class="brand brand-xl">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 44 44" fill="none">
+              <circle cx="22" cy="22" r="15.5" stroke="currentColor" stroke-width="2.6" opacity=".95"/>
+              <circle cx="22" cy="6.5" r="4.6" fill="var(--accent-2)"/>
+              <circle cx="36" cy="30" r="4.2" fill="var(--accent)"/>
+              <circle cx="8" cy="30" r="3.6" fill="var(--violet-bright)"/>
+              <circle cx="22" cy="22" r="2.2" fill="currentColor" opacity=".8"/>
+            </svg>
+          </span>
+          <span class="brand-word">Ronda</span>
+        </div>
+
+        <h1 class="auth-title">Que nunca<br>falte <em>gente.</em></h1>
+        <p class="auth-sub">Encuentra a tu próxima cuadrilla para ese plan que se cayó a última hora. Sin grupos de 40, sin excusas: personas reales, planes reales.</p>
+
+        <div class="auth-steps">
+          <div class="auth-step"><span>01</span><div><strong>Crea el plan</strong><p>Un concierto, unas cañas, pádel a nivel cero. Di cuántos faltáis.</p></div></div>
+          <div class="auth-step"><span>02</span><div><strong>Haz match</strong><p>Desliza, apúntate o deja que te encuentren. Vibe comprobada.</p></div></div>
+          <div class="auth-step"><span>03</span><div><strong>Sal y disfruta</strong><p>Chat privado, plan cerrado y cero preguntas incómodas.</p></div></div>
+        </div>
+
+        <div class="demo-panel">
+          <div class="demo-head"><span class="eyebrow">Entra en un toque</span><span class="demo-hint">cuentas demo</span></div>
+          <div id="demo-accounts" class="demo-grid"></div>
+        </div>
+      </div>
+
+      <div class="auth-card">
+        <div class="auth-tabs" role="tablist">
+          <button type="button" class="auth-tab active" data-auth-tab="login" role="tab">Entrar</button>
+          <button type="button" class="auth-tab" data-auth-tab="register" role="tab">Crear cuenta</button>
+        </div>
+
+        <form id="login-form" class="auth-form" autocomplete="on">
+          <div class="field">
+            <label for="login-user">Usuario</label>
+            <input id="login-user" name="username" type="text" inputmode="text" autocomplete="username" placeholder="lucia" required>
+          </div>
+          <div class="field">
+            <label for="login-pass">Contraseña</label>
+            <input id="login-pass" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required>
+          </div>
+          <button class="btn btn-primary btn-block" type="submit" data-busy-label="Entrando…">Entrar</button>
+          <p class="form-note">Las cuentas demo usan <code>demo1234</code>.</p>
+        </form>
+
+        <form id="register-form" class="auth-form hidden" autocomplete="on">
+          <div class="field-row">
+            <div class="field"><label for="reg-name">Nombre</label><input id="reg-name" name="name" type="text" placeholder="Tu nombre" maxlength="40" required></div>
+            <div class="field field-small"><label for="reg-age">Edad</label><input id="reg-age" name="age" type="number" min="18" max="99" value="25" required></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label for="reg-user">Usuario</label><input id="reg-user" name="username" type="text" placeholder="tunombre" maxlength="20" pattern="[a-z0-9_.]{3,20}" required></div>
+            <div class="field"><label for="reg-city">Ciudad</label><select id="reg-city" name="city"></select></div>
+          </div>
+          <div class="field">
+            <label for="reg-pass">Contraseña</label>
+            <input id="reg-pass" name="password" type="password" autocomplete="new-password" placeholder="Mínimo 8 caracteres" minlength="8" required>
+          </div>
+          <div class="field">
+            <label>Tu vibe <span class="label-hint">elige hasta 6</span></label>
+            <div id="reg-interests" class="chip-wrap chip-wrap-form"></div>
+          </div>
+          <div class="field">
+            <label>Avatar</label>
+            <div id="reg-avatars" class="avatar-picker"></div>
+          </div>
+          <div class="field">
+            <label for="reg-bio">Bio <span class="label-hint">opcional</span></label>
+            <textarea id="reg-bio" name="bio" rows="2" maxlength="200" placeholder="Dos cosas que te definan y un plan que repetirías."></textarea>
+          </div>
+          <button class="btn btn-primary btn-block" type="submit" data-busy-label="Creando…">Crear mi cuenta</button>
+        </form>
+      </div>
+    </div>
+
+    <footer class="auth-foot">
+      <span>Hecho para el Hackathon 26-27</span>
+      <span>España · planes abiertos</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================ app -->
+  <div id="app-shell" class="shell hidden">
+    <header class="topbar">
+      <button class="brand brand-sm" data-tab="plans" aria-label="Ir a planes">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none">
+            <circle cx="22" cy="22" r="15.5" stroke="currentColor" stroke-width="2.6" opacity=".95"/>
+            <circle cx="22" cy="6.5" r="4.6" fill="var(--accent-2)"/>
+            <circle cx="36" cy="30" r="4.2" fill="var(--accent)"/>
+            <circle cx="8" cy="30" r="3.6" fill="var(--violet-bright)"/>
+            <circle cx="22" cy="22" r="2.2" fill="currentColor" opacity=".8"/>
+          </svg>
+        </span>
+        <span class="brand-word">Ronda</span>
+      </button>
+      <div class="topbar-right">
+        <button class="coin-chip" id="coin-chip" data-action="wallet" aria-label="Ver mis monedas">
+          <svg class="coin-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.6"/><path d="m12 7.6 1.3 2.6 2.9.4-2.1 2 .5 2.9-2.6-1.4-2.6 1.4.5-2.9-2.1-2 2.9-.4Z"/></svg>
+          <span id="coin-balance">100</span>
+          <span class="coin-daily hidden" id="coin-daily">+10</span>
+        </button>
+        <button class="chip chip-zone" id="zone-chip" data-action="location" title="Cambiar ubicación">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <span id="topbar-zone">Madrid</span>
+        </button>
+        <button class="icon-btn" id="bell" data-action="notifications" aria-label="Notificaciones">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10.2 21a2 2 0 0 0 3.6 0"/></svg>
+          <span id="bell-dot" class="dot hidden"></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="view" class="view" aria-live="polite"></main>
+
+    <nav class="tabbar" aria-label="Navegación principal">
+      <button class="tab" data-tab="plans" aria-label="Planes">
+        <span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.6"/><path d="M15.4 8.6 13.8 13.8 8.6 15.4 10.2 10.2Z"/></svg></span>
+        <span class="tab-label">Planes</span>
+      </button>
+      <button class="tab" data-tab="discover" aria-label="Descubrir gente">
+        <span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c4.3-3.1 7-6.3 7-9.6A7 7 0 0 0 5 11.4c0 3.3 2.7 6.5 7 9.6Z"/><path d="M12 16.7c2.1-1.6 3.4-3.2 3.4-4.9a3.4 3.4 0 1 0-6.8 0c0 1.7 1.3 3.3 3.4 4.9Z"/></svg></span>
+        <span class="tab-label">Gente</span>
+      </button>
+      <button class="fab" id="fab" data-action="create-plan" aria-label="Crear plan">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+      <button class="tab" data-tab="chats" aria-label="Chats">
+        <span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 11.4a7.7 7.7 0 0 1-8.2 7.6 9 9 0 0 1-2.6-.4L4.5 20l1.2-3.7A7.3 7.3 0 0 1 4 11.4a7.7 7.7 0 0 1 8-7.4 7.7 7.7 0 0 1 8 7.4Z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></svg></span>
+        <span class="tab-label">Chats</span>
+        <span class="tab-badge hidden" id="tab-chat-badge">0</span>
+      </button>
+      <button class="tab" data-tab="profile" aria-label="Perfil">
+        <span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8.2" r="3.7"/><path d="M4.8 20c.6-3.5 3.5-5.6 7.2-5.6s6.6 2.1 7.2 5.6"/></svg></span>
+        <span class="tab-label">Perfil</span>
+      </button>
+    </nav>
+  </div>
+
+  <div id="layers"></div>
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+  <noscript><p class="noscript">Ronda necesita JavaScript para funcionar.</p></noscript>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
